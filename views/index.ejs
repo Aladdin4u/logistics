@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css">
+    <title>LTC</title>
+  </head>
+  <body>
+    <h1>Logistic Transportation Company</h1>
+      <div class="grid-container">
+        <!-- customer -->
+        <table>
+            <thead>
+              <tr>
+                <th>Customer id</th>
+                <th>Customer Name</th>
+                <th>Pick up Location</th>
+                <th>Drop off Location</td>
+              </tr>
+            </thead>
+            <tbody>
+              <% cus.forEach( el => { %>
+                <tr>
+                  <td ondrop="drop(event)" ondragover="allowDrop(event)" class="droptarget">
+                    <span ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="dragtarget"><%= el.customer_id %></span></td>
+                  <td><%= el.customer_name %></td>
+                  <td><%= el.pickup_location %></td>
+                  <td><%= el.dropoff_location %></td>
+                </tr>
+              <% }) %>  
+            </tbody>
+          </table>
+
+          <!-- planner -->
+    <div>
+      <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>slot1</th>
+              <th>slot2</th>
+              <th>slot3</th>
+              <th>slot4</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% cus.forEach( el => { %>
+              <tr>
+                <td class="arrow"><%= el.order_date %></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"><%= el.slot_1_customer_id %></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"><%= el.slot_2_customer_id %></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"><%= el.slot_3_customer_id %></td>
+                <td ondrop="drop(event)" ondragover="allowDrop(event)"><%= el.slot_4_customer_id %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+    </div>
+  </div>
+    
+
+    <script src="js/main.js"></script>
+  </body>
+  </html>
