@@ -37,7 +37,7 @@
             <tbody>
               <% cus.forEach( el => { %>
                 <tr>
-                  <td><%= el.customer_id %></td>
+                  <td><%= el.id %></td>
                   <td><%= el.customer_name %></td>
                   <td><%= el.pickup_location %></td>
                   <td><%= el.dropoff_location %></td>
@@ -52,20 +52,20 @@
           <thead>
             <tr>
               <th>Date</th>
-              <th>slot1</th>
-              <th>slot2</th>
-              <th>slot3</th>
-              <th>slot4</th>
+              <th>slot 1</th>
+              <th>slot 2</th>
+              <th>slot 3</th>
+              <th>slot 4</th>
             </tr>
           </thead>
           <tbody>
-            <% cus.forEach( el => { %>
+            <% plan.forEach( el => { %>
               <tr>
-                <td><%= el.order_date %></td>
-                <td><%= el.slot_1_customer_id %></td>
-                <td><%= el.slot_2_customer_id %></td>
-                <td><%= el.slot_3_customer_id %></td>
-                <td><%= el.slot_4_customer_id %></td>
+                <td><%= el.date %></td>
+                <td><%= el.slot_1 %></td>
+                <td><%= el.slot_2 %></td>
+                <td><%= el.slot_3 %></td>
+                <td><%= el.slot_4 %></td>
               </tr>
             <% }) %>
           </tbody>
