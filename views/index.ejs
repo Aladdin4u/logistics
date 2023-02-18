@@ -9,6 +9,20 @@
   </head>
   <body>
     <h1>Logistic Transportation Company</h1>
+    <button><a href="/planners">customer planner</a></button>
+    
+    <div class="formdiv">
+      <form action="/addslot" method='POST'>
+        <input type="date" placeholder="Enter date" min="2023-02-16" name='date'>
+        <input type="number" placeholder="Enter slot_1 customer_id" name='slotNumber1'>
+        <input type="number" placeholder="Enter slot_2 customer_id" name='slotNumber2'>
+        <input type="number" placeholder="Enter slot_3 customer_id" name='slotNumber3'>
+        <input type="number" placeholder="Enter slot_4 customer_id" name='slotNumber4'>
+        <input type="submit">
+      </form>
+    </div>
+    
+
       <div class="grid-container">
         <!-- customer -->
         <table>
@@ -23,8 +37,7 @@
             <tbody>
               <% cus.forEach( el => { %>
                 <tr>
-                  <td ondrop="drop(event)" ondragover="allowDrop(event)" class="droptarget">
-                    <span ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="dragtarget"><%= el.customer_id %></span></td>
+                  <td><%= el.customer_id %></td>
                   <td><%= el.customer_name %></td>
                   <td><%= el.pickup_location %></td>
                   <td><%= el.dropoff_location %></td>
@@ -48,11 +61,11 @@
           <tbody>
             <% cus.forEach( el => { %>
               <tr>
-                <td class="arrow"><%= el.order_date %></td>
-                <td ondrop="drop(event)" ondragover="allowDrop(event)"><%= el.slot_1_customer_id %></td>
-                <td ondrop="drop(event)" ondragover="allowDrop(event)"><%= el.slot_2_customer_id %></td>
-                <td ondrop="drop(event)" ondragover="allowDrop(event)"><%= el.slot_3_customer_id %></td>
-                <td ondrop="drop(event)" ondragover="allowDrop(event)"><%= el.slot_4_customer_id %></td>
+                <td><%= el.order_date %></td>
+                <td><%= el.slot_1_customer_id %></td>
+                <td><%= el.slot_2_customer_id %></td>
+                <td><%= el.slot_3_customer_id %></td>
+                <td><%= el.slot_4_customer_id %></td>
               </tr>
             <% }) %>
           </tbody>
