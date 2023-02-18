@@ -16,10 +16,13 @@ app.use(express.json());
 app.get("/", async (req, res) => {
   let { data: customer, error } = await supabase.from("customer").select("*");
   let { data: planner, err } = await supabase
-    .from("planner")
+    .from("sevendays")
     .select("*")
     .order("date");
-  // console.log(planner);
+    if(error) {
+      console.error(error)
+    }
+  console.log(planner);
   res.render("index.ejs", { cus: customer, plan: planner });
 });
 
@@ -40,7 +43,10 @@ app.post("/addslot", async (req, res) => {
       slot_4: slot4,
     })
     .eq("date", date);
-  res.redirect("/");
+    if(error) {
+      console.error(error)
+    }
+    res.redirect("/");
 });
 
 app.listen(process.env.PORT, () => {
