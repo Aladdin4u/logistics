@@ -19,10 +19,10 @@ app.get("/", async (req, res) => {
     .from("sevendays")
     .select("*")
     .order("date");
-    if(error) {
-      console.error(error)
-    }
-  console.log(planner);
+  if (error) {
+    console.error(error);
+  }
+  // console.log(planner);
   res.render("index.ejs", { cus: customer, plan: planner });
 });
 
@@ -43,10 +43,10 @@ app.post("/addslot", async (req, res) => {
       slot_4: slot4,
     })
     .eq("date", date);
-    if(error) {
-      console.error(error)
-    }
-    res.redirect("/");
+  if (error) {
+    console.error(error);
+  }
+  res.redirect("/");
 });
 
 app.listen(process.env.PORT, () => {
