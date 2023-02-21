@@ -14,25 +14,31 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/", async (req, res) => {
-  let { data: customer, error } = await supabase.from("customer").select("*");
-  let { data: planner, err } = await supabase
-    .from("sevendays")
-    .select("*")
-    .order("date");
-  if (error) {
-    console.error(error);
-  }
-  // console.log(planner);
-  res.render("index.ejs", { cus: customer, plan: planner });
+  const user = await supabase.from("customer").select("*");
+  const slot = await supabase.from("sevendays").select("*").order("date");
+  const [userResult, slotResult] = await Promise.allSettled([user, slot]);
+
+  if (userResult.status === "rejected") {
+    const err = userResult.reason;
+    console.error(err);
+  } 
+  if (slotResult.status === "rejected") {
+    const err = userResult.reason;
+    console.error(err);
+  } 
+  res.render("index.ejs", {
+    cus: userResult.value.data,
+    plan: slotResult.value.data,
+  });
 });
 
 app.post("/addslot", async (req, res) => {
-  // console.log(req.body);
-  let slot1 = req.body.slotNumber1;
-  let slot2 = req.body.slotNumber2;
-  let slot3 = req.body.slotNumber3;
-  let slot4 = req.body.slotNumber4;
-  let date = req.body.date;
+  const body = req.body
+  let slot1 = body.slotNumber1;
+  let slot2 = body.slotNumber2;
+  let slot3 = body.slotNumber3;
+  let slot4 = body.slotNumber4;
+  let date = body.date;
 
   let { data, error } = await supabase
     .from("planner")
