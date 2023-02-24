@@ -34,11 +34,12 @@ app.get("/", async (req, res) => {
 
 app.post("/addslot", async (req, res) => {
   const body = req.body
-  let slot1 = body.slotNumber1;
-  let slot2 = body.slotNumber2;
-  let slot3 = body.slotNumber3;
-  let slot4 = body.slotNumber4;
+  let slot1 = body.slotNumber1 === "" ? null : body.slotNumber1;
+  let slot2 = body.slotNumber2 === "" ? null : body.slotNumber2;
+  let slot3 = body.slotNumber3 === "" ? null : body.slotNumber3;
+  let slot4 = body.slotNumber4 === "" ? null : body.slotNumber4;
   let date = body.date;
+  console.log(body)
 
   let { data, error } = await supabase
     .from("planner")
